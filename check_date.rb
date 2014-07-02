@@ -19,7 +19,6 @@ onEvent(:ALL_UP) do
     group("Actor").exec("/bin/date")
   end
   after 5 do
-    Experiment.leave_memberships
     Experiment.done
   end
 end
