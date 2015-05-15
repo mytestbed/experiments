@@ -11,8 +11,8 @@
 #
 # STEP 0 - Load the declaration of the Applications used in this experiment
 #
-loadOEDL("file:///home/thierry/experiments/rv2015/nmetrics.oedl")
-loadOEDL("file:///home/thierry/experiments/rv2015/brace_apps.oedl")
+loadOEDL('https://raw.githubusercontent.com/mytestbed/experiments/master/brace2015/nmetrics.oedl')
+loadOEDL('https://raw.githubusercontent.com/mytestbed/experiments/master/brace2015/brace_apps.oedl')
 
 ################################################################################
 #
