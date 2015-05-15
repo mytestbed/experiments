@@ -48,6 +48,7 @@ all_nodes = case property.set.to_s
    when '4' then ['node14','node15','node16','node17']
    when '5' then ['node28','node29','node30','node32']
    when '6' then ['node19','node20','node21','node22']
+   when '7' then ['node33','node34','node35','node36']
 end
 
 ################################################################################
