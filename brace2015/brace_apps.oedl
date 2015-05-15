@@ -1,0 +1,71 @@
+# Copyright (c) 2015 National ICT Australia Limited (NICTA).
+# Thierry.Rakotoarivelo@nicta.com.au
+#
+# This is the OMF6 Application Definitions for the applications used in the
+# Brace 2015 paper.
+#
+
+# The MQTT Broker
+# Logs are written to the resource's local "/tmp/mqtt.log"
+#
+defApplication('mqtt') do |a|
+  a.quiet = true
+  a.binary_path = "/root/run_broker.sh"
+  a.description = "MQTT Broker"
+end
+
+# The Task Issuer
+#
+defApplication('taskissuer') do |a|
+  a.quiet = true
+  a.binary_path = "/root/run_taskissuer.sh"
+  a.description = "Brace Task Issuer Application"
+  a.defProperty("mqtt_addr","Address of MQTT server","",
+    :type => :string, :dynamic => false, :order => 1, :mandatory => true, :default => "127.0.0.1")
+  a.defProperty("mqtt_port","Port of MQTT server","",
+    :type => :numeric, :dynamic => false, :order => 2, :mandatory => true, :default => "1883")
+  a.defProperty("task_load","Number of iteration for assigning tasks","",
+    :type => :numeric, :dynamic => false, :order => 3, :mandatory => true, :default => "1")
+end
+
+# The Global Monitor
+#
+defApplication('globalmonitor') do |a|
+  a.quiet = true
+  a.binary_path = "/root/run_globalmonitor.sh"
+  a.description = "Brace Global Monitor Application"
+  a.defProperty("mqtt_addr","Address of MQTT server","",
+    :type => :string, :dynamic => false, :order => 1, :mandatory => true, :default => "127.0.0.1")
+  a.defProperty("mqtt_port","Port of MQTT server","",
+    :type => :numeric, :dynamic => false, :order => 2, :mandatory => true, :default => "1883")
+  a.defProperty("error_number","Number of injected global errors","",
+    :type => :numeric, :dynamic => false, :order => 3, :mandatory => true, :default => "0")
+end
+
+# The Agent Application
+#
+defApplication('agent') do |a|
+  a.quiet = true
+  a.binary_path = "/root/run_agent.sh"
+  a.description = "Brace Agent Application"
+  a.defProperty("specification","Specification to use (master agent only)","",
+    :type => :string, :dynamic => false, :order => 1, :mandatory => true, :default => '1LocalSpec')
+  a.defProperty("name","Agent's Name","",
+    :type => :string, :dynamic => false, :order => 2, :mandatory => true, :default => "Foo")
+  a.defProperty("is_master","Is this a master agent?","",
+    :type => :string, :dynamic => false, :order => 3, :mandatory => true, :default => "true")
+  a.defProperty("x","X position on the internally constructed map","",
+    :type => :numeric, :dynamic => false, :order => 4, :mandatory => true, :default => "40")
+  a.defProperty("y","Y position on the internally constructed map","",
+    :type => :numeric, :dynamic => false, :order => 5, :mandatory => true, :default => "100")
+  a.defProperty("mqtt_addr","Address of MQTT server","",
+    :type => :string, :dynamic => false, :order => 6, :mandatory => true, :default => "127.0.0.1")
+  a.defProperty("mqtt_port","Port of MQTT server","",
+    :type => :numeric, :dynamic => false, :order => 7, :mandatory => true, :default => "1883")
+  a.defProperty("task_number","Number of injected local events per second (master agent only)","",
+    :type => :numeric, :dynamic => false, :order => 8, :mandatory => false)
+  a.defProperty("error_number","Number of injected local errors (master agent only)","",
+    :type => :numeric, :dynamic => false, :order => 9, :mandatory => false)
+  a.defProperty("slave_name","Name of a slave agent (master agent only)","",
+    :type => :string, :dynamic => false, :order => 10, :mandatory => false)
+end
