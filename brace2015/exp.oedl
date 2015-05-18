@@ -132,7 +132,7 @@ onEvent(:ALL_UP) do
     all_nodes.each_index do |i|
       group("Peer_#{i}").exec("/sbin/ifconfig eth0 192.168.#{property.set.to_s}.#{100+i} netmask 255.255.0.0 up")
     end
-    group("Peer_0").exec("/bin/rm -f /root/TaskIssuer/paho*")
+    group("Peer_0").exec("/bin/rm -rf /root/TaskIssuer/paho*")
     group("Peer_1").exec("/bin/rm -f /root/GlobalMonitorNode/GlobalMonitorResult*")
     group("Peer_2").exec("/bin/rm -f /root/RoverAgent/LocalMonitorResult*")
     group("Peer_3").exec("/bin/rm -f /root/RoverAgent/LocalMonitorResult*")
