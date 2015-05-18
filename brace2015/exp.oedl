@@ -181,6 +181,7 @@ defEvent :APP_EXITED do |state|
   state.each do |resource|
     # Trigger this event when the application  'agent_cxt_0' is stopped
     triggered = true if (resource.type == 'application') && (resource.app == 'agent_cxt_0') && (resource.state == 'stopped')
+    triggered = true if (resource.type == 'application') && (resource.app == 'agent_cxt_1') && (resource.state == 'stopped')
   end
   triggered
 end
