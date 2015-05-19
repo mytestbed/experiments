@@ -34,12 +34,14 @@ defApplication('globalmonitor') do |a|
   a.quiet = true
   a.binary_path = "/root/run_globalmonitor.sh"
   a.description = "Brace Global Monitor Application"
+  a.defProperty("specification","Specification to use","",
+    :type => :string, :dynamic => false, :order => 1, :mandatory => true, :default => '1LocalSpec')
   a.defProperty("mqtt_addr","Address of MQTT server","",
-    :type => :string, :dynamic => false, :order => 1, :mandatory => true, :default => "127.0.0.1")
+    :type => :string, :dynamic => false, :order => 2, :mandatory => true, :default => "127.0.0.1")
   a.defProperty("mqtt_port","Port of MQTT server","",
-    :type => :numeric, :dynamic => false, :order => 2, :mandatory => true, :default => "1883")
+    :type => :numeric, :dynamic => false, :order => 3, :mandatory => true, :default => "1883")
   a.defProperty("error_number","Number of injected global errors","",
-    :type => :numeric, :dynamic => false, :order => 3, :mandatory => true, :default => "0")
+    :type => :numeric, :dynamic => false, :order => 4, :mandatory => true, :default => "0")
 end
 
 # The Agent Application
@@ -48,7 +50,7 @@ defApplication('agent') do |a|
   a.quiet = true
   a.binary_path = "/root/run_agent.sh"
   a.description = "Brace Agent Application"
-  a.defProperty("specification","Specification to use (master agent only)","",
+  a.defProperty("specification","Specification to use","",
     :type => :string, :dynamic => false, :order => 1, :mandatory => true, :default => '1LocalSpec')
   a.defProperty("name","Agent's Name","",
     :type => :string, :dynamic => false, :order => 2, :mandatory => true, :default => "Foo")

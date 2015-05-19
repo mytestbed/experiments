@@ -87,6 +87,7 @@ end
 
 defGroup('Global_Monitor',all_nodes[1]) do |g|
   g.addApplication("globalmonitor") do |a|
+    a.setProperty('specification', property.specification)
     a.setProperty('mqtt_addr', "192.168.#{property.set.to_s}.100")
     a.setProperty('mqtt_port', property.mqtt_port)
     a.setProperty('error_number', property.global_error_number)
@@ -95,6 +96,7 @@ end
 
 defGroup('Master_Agent',all_nodes[2]) do |g|
   g.addApplication("agent") do |a| # also known internally as "agent_cxt_0"
+    a.setProperty('specification', property.specification)
     a.setProperty('name', property.master_name)
     a.setProperty('is_master', 'true')
     a.setProperty('x', property.master_x)
@@ -104,19 +106,18 @@ defGroup('Master_Agent',all_nodes[2]) do |g|
     a.setProperty('task_number', property.task_number)
     a.setProperty('error_number', property.local_error_number)
     a.setProperty('slave_name', property.slave_name)
-    a.setProperty('specification', property.specification)
   end
 end
 
 defGroup('Slave_Agent',all_nodes[3]) do |g|
   g.addApplication("agent") do |a| # also known internally as "agent_cxt_1"
+    a.setProperty('specification', property.specification)
     a.setProperty('name', property.slave_name)
     a.setProperty('is_master', 'false')
     a.setProperty('x', property.slave_x)
     a.setProperty('y', property.slave_y)
     a.setProperty('mqtt_addr', "192.168.#{property.set.to_s}.100")
     a.setProperty('mqtt_port', property.mqtt_port)
-    a.setProperty('specification', property.specification)
   end
 end
 
